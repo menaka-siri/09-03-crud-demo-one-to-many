@@ -21,8 +21,20 @@ public class Application {
 			System.out.println("Hi, Mom");
 //			createInstructor(appDAO);
 //			findInstructor(appDAO);
-			deleteInstructor(appDAO);
+//			deleteInstructor(appDAO);
+
+			findInstructorDetail(appDAO);
 		};
+	}
+
+	private void findInstructorDetail(AppDAO appDAO) {
+		int theId = 2;
+		InstructorDetail tempInstructorDetail = appDAO.findInstructorDetailById(theId);
+
+		System.out.println("tempInstructorDetail: " + tempInstructorDetail);
+		System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
+
+		System.out.println("Done!");
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {
