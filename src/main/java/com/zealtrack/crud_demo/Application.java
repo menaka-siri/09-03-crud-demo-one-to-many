@@ -23,8 +23,16 @@ public class Application {
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 
-			findInstructorDetail(appDAO);
+//			findInstructorDetail(appDAO);
+			deleteInstructorDetail(appDAO);
 		};
+	}
+
+	private void deleteInstructorDetail(AppDAO appDAO) {
+		int theId = 2;
+		System.out.println("Deleting instrcutor detail id: " + theId);
+		appDAO.deleteInstructorDetailById(theId);
+		System.out.println("Done!");
 	}
 
 	private void findInstructorDetail(AppDAO appDAO) {
