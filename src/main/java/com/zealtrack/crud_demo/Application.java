@@ -24,15 +24,36 @@ public class Application {
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
             System.out.println("Hi, Mom");
+            // one-to-one
 //          createInstructor(appDAO);
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 
 //			findInstructorDetail(appDAO);
+
+            //one-to-one bi-directional
 //			deleteInstructorDetail(appDAO);
 
-            createInstrctorWithCourses(appDAO);
+            //one-to-many
+//            createInstrctorWithCourses(appDAO);
+
+            //one-to-many lazy loading
+            findInstructorWithCourses(appDAO);
         };
+    }
+
+    private void findInstructorWithCourses(AppDAO appDAO) {
+
+        int theId = 1;
+        System.out.println("Finding instructor id: " + theId);
+
+        Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+        System.out.println("tempInstructor: " + tempInstructor);
+        System.out.println("the associated courses: " + tempInstructor.getCourses());
+
+        System.out.println("Done!");
+
     }
 
     private void createInstrctorWithCourses(AppDAO appDAO) {
