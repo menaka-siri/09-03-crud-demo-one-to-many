@@ -2,6 +2,7 @@ package com.zealtrack.crud_demo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,8 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
-    @OneToMany(mappedBy = "instructor")
+    @OneToMany(mappedBy = "instructor",
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Course> courses;
 
     public Instructor() {
@@ -85,6 +87,17 @@ public class Instructor {
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    // add convenience method for bi-directional relationship
+    public void add(Course tempCourse) {
+        if (courses == null) {
+            courses = new ArrayList<>();
+        }
+
+        courses.add(tempCourse);
+
+        tempCourse.setInstructor(this);
     }
 
     @Override
