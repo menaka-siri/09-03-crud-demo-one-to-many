@@ -1,7 +1,10 @@
 package com.zealtrack.crud_demo.dao;
 
+import com.zealtrack.crud_demo.entity.Course;
 import com.zealtrack.crud_demo.entity.Instructor;
 import com.zealtrack.crud_demo.entity.InstructorDetail;
+
+import java.util.List;
 
 public interface AppDAO {
 
@@ -14,4 +17,6 @@ public interface AppDAO {
     InstructorDetail findInstructorDetailById(int theId);
 
     void deleteInstructorDetailById(int theId);
+
+    List<Course> findCoursesByInstructorId(int theId);
 }
