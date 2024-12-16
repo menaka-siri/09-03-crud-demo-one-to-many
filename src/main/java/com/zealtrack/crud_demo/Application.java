@@ -1,6 +1,7 @@
 package com.zealtrack.crud_demo;
 
 import com.zealtrack.crud_demo.dao.AppDAO;
+import com.zealtrack.crud_demo.entity.Course;
 import com.zealtrack.crud_demo.entity.Instructor;
 import com.zealtrack.crud_demo.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -23,13 +24,47 @@ public class Application {
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
             System.out.println("Hi, Mom");
-//            createInstructor(appDAO);
+//          createInstructor(appDAO);
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 
 //			findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+//			deleteInstructorDetail(appDAO);
+
+            createInstrctorWithCourses(appDAO);
         };
+    }
+
+    private void createInstrctorWithCourses(AppDAO appDAO) {
+        //create the instructor
+        Instructor tempInstructor = new Instructor(
+                "Suasn", "Public", "susan_pub@luv2code.com");
+
+        // create the instructor detail entity
+        InstructorDetail tempInstructorDetail = new InstructorDetail(
+                "http://youtube.com/susan",
+                "Video Games"
+        );
+
+        tempInstructor.setInstructorDetail(tempInstructorDetail);
+
+        //create some courses
+        Course tempCourse1 = new Course("Rubik's Cube - How to Speed Cube");
+        Course tempCourse2 = new Course("Atari 2600 - Game Development");
+
+        // add courses to the instructor
+        tempInstructor.add(tempCourse1);
+        tempInstructor.add(tempCourse2);
+
+        // save the instructor
+        // this will also save the courses because of CascadeType.PERSIST
+
+        System.out.println("Saving instructor: " + tempInstructor);
+        System.out.println("Courses: " + tempInstructor.getCourses());
+
+        appDAO.save(tempInstructor);
+
+        System.out.println("Done!");
     }
 
     private void deleteInstructorDetail(AppDAO appDAO) {
