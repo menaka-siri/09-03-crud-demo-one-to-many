@@ -49,8 +49,25 @@ public class Application {
 //            findInstructorWithCoursesJoinFetch(appDAO);
 
             // update instructor
-            updateInstructor(appDAO);
+//            updateInstructor(appDAO);
+
+            // update course
+            updateCourse(appDAO);
         };
+    }
+
+    private void updateCourse(AppDAO appDAO) {
+        int theId = 10;
+
+        System.out.println("Finding course id: " + theId);
+        Course tempCourse = appDAO.findCourseById(theId);
+
+        System.out.println("Updating course id: " + theId);
+        tempCourse.setTitle("Java - The Complete Masterclass");
+
+        appDAO.updateCourse(tempCourse);
+
+        System.out.println("Done!");
     }
 
     private void updateInstructor(AppDAO appDAO) {
