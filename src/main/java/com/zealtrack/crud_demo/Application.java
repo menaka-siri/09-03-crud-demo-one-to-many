@@ -29,7 +29,7 @@ public class Application {
             // one-to-one
 //          createInstructor(appDAO);
 //			findInstructor(appDAO);
-//			deleteInstructor(appDAO);
+			deleteInstructor(appDAO);
 
 //			findInstructorDetail(appDAO);
 
@@ -52,7 +52,7 @@ public class Application {
 //            updateInstructor(appDAO);
 
             // update course
-            updateCourse(appDAO);
+//            updateCourse(appDAO);
         };
     }
 
